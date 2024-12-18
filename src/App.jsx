@@ -14,6 +14,9 @@ function App() {
       <h1 className="page-title">
         Agentic Workflows with Vecflow: SEC EDGAR
       </h1>
+      <p className="text-gray-300 max-w-2xl mx-auto text-lg italic mb-8 opacity-80 text-center">
+        Joseph Parker & The Vecflow Research Team
+      </p>
 
       <img 
         src={`${import.meta.env.BASE_URL}data/pexels.jpg`}

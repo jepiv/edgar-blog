@@ -48,7 +48,7 @@
   }
 
   .page-title {
-    @apply text-4xl text-center text-gray-100 mb-12 font-light font-bold;
+    @apply text-4xl text-center text-gray-100 mb-2 font-light font-bold;
     font-family: 'Inter', system-ui, sans-serif;
     letter-spacing: -0.025em;
   }
