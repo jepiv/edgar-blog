@@ -13,7 +13,8 @@ const SECFilingsViz = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch('/data/filing_forms.csv');
+        // Use import.meta.env.BASE_URL to get the base URL from Vite
+        const response = await fetch(import.meta.env.BASE_URL + 'data/filing_forms.csv');
         const csvText = await response.text();
         const parsed = Papa.parse(csvText, {
           header: true,
@@ -105,7 +106,7 @@ const SECFilingsViz = () => {
     const actualWidth = Math.max(percentage, 2);
 
     return (
-      <div className="relative flex items-center w-full h-8 group">
+      <div className="chart-bar group">
         <div className="w-32 truncate pr-4 text-sm text-gray-300">{data.Type}</div>
         <div className="flex-1 relative h-5">
           <div className="absolute inset-0 bg-gray-800 rounded-sm" />
@@ -124,9 +125,7 @@ const SECFilingsViz = () => {
             />
           </div>
 
-          <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-200 
-                         bg-gray-800 text-gray-100 px-2 py-1 rounded text-sm -top-8 left-32 
-                         shadow-lg shadow-black/20 whitespace-nowrap z-10">
+          <div className="chart-tooltip group-hover:opacity-100">
             {formatNumber(data.TotalCount)} filings
           </div>
         </div>
@@ -145,14 +144,13 @@ const SECFilingsViz = () => {
   const displayData = getDisplayData();
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6 bg-gray-900 rounded-lg border border-gray-800">
+    <div className="chart-container">
       <div className="mb-8">
-        <h2 className="text-2xl font-light text-gray-100 mb-6">Most Frequent SEC Filings</h2>
+        <h2 className="chart-title">Most Frequent SEC Filings</h2>
         <div className="relative">
           {hasScroll && (
-            <div className={`absolute bottom-0 left-0 right-0 h-12 transition-opacity duration-300
-                            ${isAtBottom ? 'opacity-0' : 'opacity-100'} pointer-events-none z-10`}>
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent" />
+            <div className={`chart-scroll-fade ${isAtBottom ? 'opacity-0' : 'opacity-100'}`}>
+              <div className="absolute inset-0 bg-gradient-to-t from-chart-bg to-transparent" />
               <div className="absolute left-1/2 -translate-x-1/2 bottom-2">
                 <ChevronDown 
                   size={24} 
@@ -165,7 +163,7 @@ const SECFilingsViz = () => {
           <div 
             ref={scrollContainerRef}
             onScroll={handleScroll}
-            className="space-y-0 max-h-96 overflow-y-auto pr-2 scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-gray-600"
+            className="chart-scrollable scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-gray-600"
           >
             {displayData.map((item, idx) => (
               <BarChart key={idx} data={item} maxValue={maxValue} />
@@ -174,13 +172,13 @@ const SECFilingsViz = () => {
         </div>
       </div>
 
-      <div className="border-t border-gray-800 pt-6">
+      <div className="border-t border-chart-border pt-6">
         <div className="flex flex-wrap gap-2">
           <button
-            className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
+            className={`chart-button ${
               selectedGroup === 'top10'
-                ? 'bg-blue-500 text-white'
-                : 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+                ? 'chart-button-active'
+                : 'chart-button-inactive'
             }`}
             onClick={() => setSelectedGroup('top10')}
           >
@@ -189,10 +187,10 @@ const SECFilingsViz = () => {
           {Object.entries(groupedData).map(([group, items]) => (
             <button
               key={group}
-              className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
+              className={`chart-button ${
                 selectedGroup === group
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+                  ? 'chart-button-active'
+                  : 'chart-button-inactive'
               }`}
               onClick={() => setSelectedGroup(group)}
             >

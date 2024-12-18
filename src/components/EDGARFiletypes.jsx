@@ -27,7 +27,7 @@ const EDGARFiletypes = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch('/data/edgar_filetypes_breakdown.csv');
+        const response = await fetch(import.meta.env.BASE_URL + 'data/edgar_filetypes_breakdown.csv');
         const csvText = await response.text();
         const parsed = Papa.parse(csvText, {
           header: true,
@@ -73,7 +73,7 @@ const EDGARFiletypes = () => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="bg-gray-800 text-gray-100 px-3 py-2 rounded shadow-lg">
+        <div className="bg-chart-button-hover text-chart-text-primary px-3 py-2 rounded shadow-lg">
           <div className="font-medium">{data.name}</div>
           <div className="text-sm">
             Count: {new Intl.NumberFormat().format(data.count)}
@@ -88,27 +88,27 @@ const EDGARFiletypes = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6 bg-gray-900 rounded-lg border border-gray-800">
+    <div className="chart-container">
       <div className="mb-8">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-light text-gray-100">EDGAR Filing Extensions</h2>
+          <h2 className="chart-title">EDGAR Filing Extensions</h2>
           <div className="flex gap-2">
             <button
               onClick={() => setChartType('pie')}
-              className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
+              className={`chart-button ${
                 chartType === 'pie'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+                  ? 'chart-button-active'
+                  : 'chart-button-inactive'
               }`}
             >
               Pie
             </button>
             <button
               onClick={() => setChartType('bar')}
-              className={`px-3 py-1.5 rounded-full text-sm transition-all duration-200 ${
+              className={`chart-button ${
                 chartType === 'bar'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+                  ? 'chart-button-active'
+                  : 'chart-button-inactive'
               }`}
             >
               Bar
@@ -120,7 +120,7 @@ const EDGARFiletypes = () => {
           <select
             value={selectedYear || ''}
             onChange={(e) => setSelectedYear(Number(e.target.value))}
-            className="bg-gray-800 text-gray-300 rounded-full px-4 py-1.5 text-sm border border-gray-700 focus:outline-none focus:border-blue-500"
+            className="chart-select"
           >
             {years.map(year => (
               <option key={year} value={year}>{year}</option>
@@ -129,7 +129,7 @@ const EDGARFiletypes = () => {
           <select
             value={selectedForm || ''}
             onChange={(e) => setSelectedForm(e.target.value)}
-            className="bg-gray-800 text-gray-300 rounded-full px-4 py-1.5 text-sm border border-gray-700 focus:outline-none focus:border-blue-500"
+            className="chart-select"
           >
             {formTypes.map(form => (
               <option key={form} value={form}>{form}</option>
@@ -213,8 +213,8 @@ const EDGARFiletypes = () => {
         </div>
       </div>
 
-      <div className="border-t border-gray-800 pt-6">
-        <div className="text-sm text-gray-400">
+      <div className="border-t border-chart-border pt-6">
+        <div className="text-sm text-chart-text-secondary">
           Select a year and filing type to see the breakdown of file extensions used.
         </div>
       </div>

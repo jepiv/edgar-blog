@@ -1,11 +1,109 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/web/InterVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/web/InterVariable-Italic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Option 1: All paragraphs get indented */
+  /* p {
+    text-indent: 2em;
+    margin-bottom: 1em;
+  } */
+}
+
+@layer components {
+  /* Option 2: Class for indented paragraphs */
+  .indented {
+    text-indent: 2em;
+    margin-bottom: 1em;
+  }
+
+  /* First paragraph in a section might not need indent */
+  .text-block p:first-of-type {
+    text-indent: 0;
+  }
+
+  /* But subsequent paragraphs get indented */
+  .text-block p + p {
+    text-indent: 2em;
+    margin-top: 1em;
+  }
+
+  .page-title {
+    @apply text-4xl text-center text-gray-100 mb-12 font-light font-bold;
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  .sub-header {
+    @apply text-2xl text-center text-gray-100 mb-6 font-light;
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  .chart-container {
+    @apply w-full max-w-4xl mx-auto p-6 bg-chart-bg rounded-lg border border-chart-border;
+  }
+  
+  .chart-title {
+    @apply text-2xl font-light text-chart-text-primary mb-6;
+  }
+  
+  .chart-button {
+    @apply px-3 py-1.5 rounded-full text-sm transition-all duration-200;
+  }
+  
+  .chart-button-active {
+    @apply bg-chart-button-active text-white;
+  }
+  
+  .chart-button-inactive {
+    @apply bg-chart-button-hover hover:bg-opacity-90 text-chart-button-text;
+  }
+  
+  .chart-select {
+    @apply bg-chart-button-hover text-chart-button-text rounded-full px-4 py-1.5 text-sm border border-chart-border focus:outline-none focus:border-chart-button-active;
+  }
+  
+  .chart-bar {
+    @apply relative flex items-center w-full h-8;
+  }
+  
+  .chart-bar-fill {
+    @apply bg-chart-button-active h-full rounded-sm transition-all duration-300 origin-left;
+  }
+  
+  .chart-tooltip {
+    @apply absolute opacity-0 transition-opacity duration-200 
+           bg-chart-button-hover text-chart-text-primary px-2 py-1 rounded text-sm -top-8 left-32 
+           shadow-lg shadow-black/20 whitespace-nowrap z-10;
+  }
+  
+  .chart-scrollable {
+    @apply space-y-0 max-h-96 overflow-y-auto pr-2;
+  }
+  
+  .chart-scroll-fade {
+    @apply absolute bottom-0 left-0 right-0 h-12 transition-opacity duration-300 pointer-events-none z-10;
+  }
 }
 
 .scrollbar-thin::-webkit-scrollbar {
