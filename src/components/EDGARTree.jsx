@@ -143,8 +143,8 @@ const SearchTreeViz = () => {
     if (showingJudgment && stepIndex === 2) {
       return (
         <div className="flex items-center justify-center p-4">
-          <div className="bg-gray-800 rounded-lg p-6 text-gray-200 w-full">
-            <pre className="text-sm whitespace-pre-wrap">
+          <div className="bg-gray-800 rounded-lg p-6 text-gray-200 w-full break-words whitespace-pre-wrap max-w-full overflow-hidden">
+            <pre className="text-sm whitespace-pre-wrap break-words">
               {step.nodes[0].finalAnswer}
             </pre>
           </div>
@@ -154,7 +154,7 @@ const SearchTreeViz = () => {
 
     return (
       <div className="space-y-4">
-        {step.nodes.map((node, idx) => {
+        {step.nodes.map((node) => {
           const isSuccessful = successfulNodes.has(node.id);
           const appearsInThisColumn = stepIndex === currentStep || 
                                     (stepIndex < currentStep && !isSuccessful);
@@ -186,17 +186,19 @@ const SearchTreeViz = () => {
                 className={`p-4 rounded-lg ${getNodeColor(node, step, showingJudgment)} 
                           transition-all duration-500 ease-in-out
                           hover:scale-105 cursor-pointer relative
-                          ${isPruned(node.id) ? 'line-through' : ''}`}
+                          ${isPruned(node.id) ? 'line-through' : ''}
+                          break-words whitespace-pre-wrap max-w-full overflow-hidden`}
                 onMouseEnter={() => setShowTooltip(node.id)}
                 onMouseLeave={() => setShowTooltip(null)}
               >
-                <div className="text-white text-sm font-medium">{node.text}</div>
-                <div className="text-white/80 text-xs mt-2">{node.result}</div>
+                <div className="text-white text-sm font-medium break-words">{node.text}</div>
+                <div className="text-white/80 text-xs mt-2 break-words">{node.result}</div>
 
                 {showTooltip === node.id && (
                   <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-64 p-3 
-                                bg-gray-800 rounded shadow-lg z-10">
-                    <div className="text-gray-200 text-xs">
+                                  bg-gray-800 rounded shadow-lg z-10 
+                                  break-words whitespace-pre-wrap">
+                    <div className="text-gray-200 text-xs break-words">
                       <div className="font-medium mb-1">Query:</div>
                       {node.query}
                     </div>
@@ -211,25 +213,26 @@ const SearchTreeViz = () => {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-6 bg-gray-900 rounded-lg border border-gray-800">
+    <div className="w-full max-w-7xl mx-auto p-6 bg-gray-900 rounded-lg border border-gray-800 overflow-hidden">
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-100 mb-2">
+        <h2 className="text-2xl font-bold text-gray-100 mb-2 break-words">
           Example: "Which of Google's 8-ks in the past two years have had an item 5.02? Which of them were executive departures?"
         </h2>
 
-        <div className="grid grid-cols-3 gap-8 min-h-[600px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 min-h-[600px] overflow-x-auto">
           {SEARCH_TREE_DATA.steps.map((step, index) => (
             <div key={index} 
                 className={`relative border-r last:border-r-0 border-gray-800 
                            transition-opacity duration-500 ease-in-out
                            ${index > currentStep ? 'opacity-0' : 'opacity-100'}
-                           flex flex-col gap-4 p-4`}>
+                           flex flex-col gap-4 p-4 break-words whitespace-pre-wrap`}
+            >
               {/* Step Title & Description */}
               <div>
-                <div className="text-gray-200 font-medium mb-2">
+                <div className="text-gray-200 font-medium mb-2 break-words">
                   {step.title}
                 </div>
-                <div className="text-gray-400 text-sm mb-4">
+                <div className="text-gray-400 text-sm mb-4 break-words">
                   {step.description}
                 </div>
               </div>
@@ -237,7 +240,8 @@ const SearchTreeViz = () => {
               {/* Judgment Text */}
               {showJudgments[index] && step.pruneReason && (
                 <div className="text-red-400/80 text-sm bg-gray-800/50 rounded-lg p-4 
-                              transition-all duration-500 ease-in-out text-center">
+                              transition-all duration-500 ease-in-out text-center 
+                              break-words whitespace-pre-wrap">
                   {step.pruneReason}
                 </div>
               )}
@@ -254,7 +258,7 @@ const SearchTreeViz = () => {
               )}
 
               {/* Tree Level Content */}
-              <div className="flex-1">
+              <div className="flex-1 break-words">
                 {renderTreeLevel(index)}
               </div>
             </div>
