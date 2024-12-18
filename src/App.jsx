@@ -7,9 +7,21 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-950 py-12 px-4">
       {/* Big page title */}
+      <p className="text-gray-300 max-w-3xl mx-auto text-lg italic opacity-80 justify-left">
+      December 18, 2024
+      </p>
+      <div className="my-2"></div>
       <h1 className="page-title">
         Agentic Workflows with Vecflow: SEC EDGAR
       </h1>
+
+      <img 
+        src={`${import.meta.env.BASE_URL}data/pexels.jpg`}
+        alt="Description"
+        className="w-full max-w-3xl mx-auto"
+      />
+
+      <div className="my-6"></div>
 
       {/* Introduction */}
       <p className="indent-lg text-gray-300 max-w-3xl mx-auto text-lg">
