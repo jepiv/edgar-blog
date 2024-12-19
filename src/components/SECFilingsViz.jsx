@@ -1,6 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import Papa from 'papaparse';
 import { ChevronDown } from 'lucide-react';
+
+const Tooltip = ({ content, mousePosition }) => {
+  if (!content || !mousePosition) return null;
+  
+  return createPortal(
+    <div 
+      className="fixed z-50 px-2 py-1 text-sm bg-gray-900 text-gray-100 rounded shadow-lg pointer-events-none"
+      style={{
+        left: mousePosition.x + 10,
+        top: mousePosition.y + 10,
+      }}
+    >
+      {content}
+    </div>,
+    document.body
+  );
+};
 
 const SECFilingsViz = () => {
   const [data, setData] = useState([]);
@@ -8,7 +26,10 @@ const SECFilingsViz = () => {
   const [selectedGroup, setSelectedGroup] = useState('top10');
   const [isAtBottom, setIsAtBottom] = useState(false);
   const [hasScroll, setHasScroll] = useState(false);
+  const [tooltipContent, setTooltipContent] = useState(null);
+  const [mousePosition, setMousePosition] = useState(null);
   const scrollContainerRef = useRef(null);
+  const chartRef = useRef(null);
   
   useEffect(() => {
     const loadData = async () => {
@@ -101,12 +122,32 @@ const SECFilingsViz = () => {
     return new Intl.NumberFormat().format(num);
   };
 
+  const clearTooltip = () => {
+    setTooltipContent(null);
+    setMousePosition(null);
+  };
+
+  useEffect(() => {
+    // Clear tooltip when component unmounts
+    return () => clearTooltip();
+  }, []);
+
   const BarChart = ({ data, maxValue }) => {
     const percentage = (data.TotalCount / maxValue) * 100;
     const actualWidth = Math.max(percentage, 2);
 
     return (
-      <div className="chart-bar group">
+      <div 
+        className="chart-bar group"
+        onMouseEnter={(e) => {
+          setTooltipContent(`${formatNumber(data.TotalCount)} filings`);
+          setMousePosition({ x: e.clientX, y: e.clientY });
+        }}
+        onMouseMove={(e) => {
+          setMousePosition({ x: e.clientX, y: e.clientY });
+        }}
+        onMouseLeave={clearTooltip}
+      >
         <div className="w-32 truncate pr-4 text-sm text-gray-300">{data.Type}</div>
         <div className="flex-1 relative h-5">
           <div className="absolute inset-0 bg-gray-800 rounded-sm" />
@@ -124,10 +165,6 @@ const SECFilingsViz = () => {
               style={{ width: `${actualWidth}%` }}
             />
           </div>
-
-          <div className="chart-tooltip group-hover:opacity-100">
-            {formatNumber(data.TotalCount)} filings
-          </div>
         </div>
       </div>
     );
@@ -144,7 +181,11 @@ const SECFilingsViz = () => {
   const displayData = getDisplayData();
 
   return (
-    <div className="chart-container">
+    <div 
+      ref={chartRef}
+      className="chart-container"
+      onMouseLeave={clearTooltip}
+    >
       <div className="mb-8">
         <h2 className="chart-title">Most Frequent SEC Filings</h2>
         <div className="relative">
@@ -163,6 +204,7 @@ const SECFilingsViz = () => {
           <div 
             ref={scrollContainerRef}
             onScroll={handleScroll}
+            onMouseLeave={clearTooltip}
             className="chart-scrollable scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-gray-600"
           >
             {displayData.map((item, idx) => (
@@ -199,6 +241,8 @@ const SECFilingsViz = () => {
           ))}
         </div>
       </div>
+
+      <Tooltip content={tooltipContent} mousePosition={mousePosition} />
     </div>
   );
 };
