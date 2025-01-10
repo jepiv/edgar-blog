@@ -48,7 +48,7 @@ function App() {
       <div className="my-6"></div>
 
       <p className="indent-lg text-gray-300 max-w-3xl mx-auto text-lg">
-        EDGAR's mission statement is admirable: democratic, rapid access to all corporate filings. But the reality is more complex. EDGAR is a sprawling database, requiring broad initial searches and heavy manual review. At Vecflow, we’re working to make EDGAR rapidly searchable and understandable, so that lawyers can focus on the legal implications of filings, rather than the filings themselves. Oliver's SEC capabilites are a strong step in this direction, providing research comprable to junior associates in a fraction of the time.
+        EDGAR's mission statement is admirable: democratic, rapid access to all corporate filings. But the reality is more complex. EDGAR is a sprawling database, requiring broad initial searches and heavy manual review. At Vecflow, we’re working to make EDGAR rapidly searchable and understandable, so that lawyers can focus on the legal implications of filings, rather than the filings themselves. Oliver's SEC capabilities are a strong step in this direction, providing research comparable to junior associates in a fraction of the time.
       </p>
       <div className="my-6"></div>
 
@@ -57,7 +57,7 @@ function App() {
       </p>
 
       <p className="indent-lg text-gray-300 max-w-3xl mx-auto text-lg">
-        Enhancing EDGAR's usability requires a knowledge of the database's history. EDGAR was made mandatory in 1995 and contains a wide variety of filetypes. The term ‘EDGARizing’ is not merely a process, but a profession for many lawyers. This was Vecflow’s first challenge – namely, how to standardize document understanding across disparate PDFs, images, XML, and more. We started with a thorough review – on balance, just how much of EDGAR is PDFs? How much is in text? To break down the data in EDGAR, we first need to understand EDGAR’s filing composition.
+        Enhancing EDGAR's usability requires a knowledge of the database's history. EDGAR was made mandatory in 1995 and contains a wide variety of filetypes. The term ‘EDGARizing’ is not merely a process but a profession for many lawyers. This was Vecflow’s first challenge – namely, how to standardize document understanding across disparate PDFs, images, XML, and more. We started with a thorough review – on balance, just how much of EDGAR is PDFs? How much is in text? To break down the data in EDGAR, we first need to understand EDGAR’s filing composition.
       </p>
       <div className="my-6"></div>
 
@@ -86,7 +86,7 @@ function App() {
 
       {/* Explanation of search */}
       <p className="indent-lg text-gray-300 max-w-3xl mx-auto text-lg">
-        Luckily txt and html are both somewhat text-based, and XBRL affords us enhanced, structured context. By supporting textual understanding of txt, pdf, html, jpeg, png, and xml, we support &gt;90% of EDGAR’s content. 
+        Luckily, txt and html are both somewhat text-based, and XBRL affords us enhanced, structured context. By supporting textual understanding of txt, pdf, html, jpeg, png, and xml, we support &gt;90% of EDGAR’s content. 
       </p>
       <div className="my-6"></div>
 
