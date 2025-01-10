@@ -39,15 +39,25 @@ function App() {
       {/* Subheader */}
 
       <p className="sub-header">
-        Anatomy of EDGAR
+        The Promise of EDGAR
       </p>
 
       <p className="indent-lg text-gray-300 max-w-3xl mx-auto text-lg">
         The SEC (Securities and Exchange Commission) is an American corporate regulatory body. It requires companies to submit filings for a variety of purposes, publicly accessible to all internet users. The SEC’s Electronic Data Gathering, Analysis, and Retrieval (EDGAR) system facilitates the search and review of these filings. 
       </p>
       <div className="my-6"></div>
+
       <p className="indent-lg text-gray-300 max-w-3xl mx-auto text-lg">
-        EDGAR was made mandatory in 1995 and contains a wide variety of filetypes. The term ‘EDGARizing’ is not merely a process, but a profession for many lawyers. This was Vecflow’s first challenge – namely, how to standardize document understanding across disparate PDFs, images, XML, and more. We started with a thorough review – on balance, just how much of EDGAR is PDFs? How much is in text? To break down the data in EDGAR, we first need to understand EDGAR’s filing composition.
+        EDGAR's mission statement is admirable: democratic, rapid access to all corporate filings. But the reality is more complex. EDGAR is a sprawling database, requiring broad initial searches and heavy manual review. At Vecflow, we’re working to make EDGAR rapidly searchable and understandable, so that lawyers can focus on the legal implications of filings, rather than the filings themselves. Oliver's SEC capabilites are a strong step in this direction, providing research comprable to junior associates in a fraction of the time.
+      </p>
+      <div className="my-6"></div>
+
+      <p className="sub-header">
+        Anatomy of EDGAR
+      </p>
+
+      <p className="indent-lg text-gray-300 max-w-3xl mx-auto text-lg">
+        Enhancing EDGAR's usability requires a knowledge of the database's history. EDGAR was made mandatory in 1995 and contains a wide variety of filetypes. The term ‘EDGARizing’ is not merely a process, but a profession for many lawyers. This was Vecflow’s first challenge – namely, how to standardize document understanding across disparate PDFs, images, XML, and more. We started with a thorough review – on balance, just how much of EDGAR is PDFs? How much is in text? To break down the data in EDGAR, we first need to understand EDGAR’s filing composition.
       </p>
       <div className="my-6"></div>
 
@@ -129,14 +139,27 @@ function App() {
       <div className="my-6"></div>
 
       <p className="indent-lg text-gray-300 max-w-3xl mx-auto text-lg">
-        Vecflow's EDGAR Agent is built on tree search, the same algorithm that informed Deep Blue’s defeat of Kasparov. Simply put, our agent tries many different research approaches, ranking them at each stage and continuing with only the best ones. Let’s see an example of this thinking in action. 
+        Vecflow's EDGAR Agent is built on a proprietary tree search, the same algorithm that informed Deep Blue’s defeat of Kasparov. Simply put, our agent tries many different research approaches, ranking them at each stage and continuing with only the best ones. Let’s see an example of this thinking in action. 
       </p>
       <div className="my-6"></div>
 
       {/* Third vis: tree search */}
       <SearchTreeViz />
       <div className="my-6"></div>
+      <p className="text-gray-200 max-w-3xl mx-auto text-sm text-center italic">
+        Please note that all data contained herein is synthetic and for illustrative purposes only.
+      </p>
 
+      <div className="my-6"></div>
+      <p className="indent-lg text-gray-300 max-w-3xl mx-auto text-lg">
+        Tree search facilitates the exploration of many paths at once, allowing the agent to avoid common pitfalls and informational dead ends. This is especially important when contrasted with many of our competitors, who rely not only on linear search, but on the user to actively provide lists of documents beforehand. 
+        Oliver's EDGAR agent allows for a more natural and expedient research process.
+      </p>
+
+      <div className="my-6"></div>
+      <p className="indent-lg text-gray-300 max-w-3xl mx-auto text-lg">
+        We are committed to empowering lawyers with the best research tools. If you are interested in learning more about Vecflow’s EDGAR Agent, please send questions or business inquiries to <a href="mailto:team@vecflow.ai" className="text-blue-400">team@vecflow.ai</a>. 
+      </p>
     </div>
   );
 }
