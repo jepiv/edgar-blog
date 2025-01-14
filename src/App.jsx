@@ -5,7 +5,7 @@ import SearchTreeViz from './components/EDGARTree';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-950 py-12 px-4">
+    <div className="min-h-screen bg-[#0d0d0d] py-12 px-4">
       {/* Big page title */}
       <p className="text-gray-300 max-w-3xl mx-auto text-lg italic opacity-80 justify-left">
       January 15, 2025
