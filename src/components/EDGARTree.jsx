@@ -60,7 +60,7 @@ const SearchTreeViz = () => {
             parentId: "1c", 
             text: "Full Search", 
             query: "2 year search", 
-            result: "3 departures found", 
+            result: "2 departures/transitions found", 
             status: "success",
             judgment: "Complete search"
           },
@@ -69,7 +69,7 @@ const SearchTreeViz = () => {
             parentId: "1d", 
             text: "Full Search", 
             query: "2 year search", 
-            result: "3 departures found", 
+            result: "2 departures/transitions found", 
             status: "success",
             judgment: "Complete search"
           },
@@ -78,17 +78,17 @@ const SearchTreeViz = () => {
             parentId: "1e", 
             text: "Recent Only", 
             query: "2023 only", 
-            result: "2 departures found", 
+            result: "1 departure/transition found", 
             status: "error",
-            judgment: "Missed 2022 filing"
+            judgment: "Missed 2023 filing"
           }
         ],
         pruneNodes: ["2c"],
-        pruneReason: "One search only looked at 2023, missing an earlier departure"
+        pruneReason: "One search only looked at 2024, missing an earlier departure"
       },
       {
         title: "Step 3: Results",
-        description: "Executive departures found",
+        description: "Executive departures/transitions found",
         nodes: [
           { 
             id: "3a", 
@@ -96,7 +96,7 @@ const SearchTreeViz = () => {
             text: "Final List", 
             query: "Compiling names", 
             result: "3 executives", 
-            finalAnswer: "Departures Found:\n• Ruth Porat (CFO)\n• Philipp Schindler (CBO)\n• Prabhakar Raghavan (SVP)"
+            finalAnswer: "Departures Found:\n\n• Ann Mather\n\t- Board of Directors\n\t- 10/24/23\n\n• Prabhakar Raghavan\n\t- Role Transition\n\t- 10/17/24"
           },
           { 
             id: "3b", 
@@ -104,7 +104,7 @@ const SearchTreeViz = () => {
             text: "Final List", 
             query: "Compiling names", 
             result: "3 executives", 
-            finalAnswer: "Departures Found:\n• Ruth Porat (CFO)\n• Philipp Schindler (CBO)\n• Prabhakar Raghavan (SVP)"
+            finalAnswer: "Departures Found:\n\n• Ann Mather\n\t- Board of Directors\n\t- 10/24/23\n\n• Prabhakar Raghavan\n\t- Role Transition\n\t- 10/17/24"
           }
         ],
         pruneNodes: [],
@@ -216,7 +216,7 @@ const SearchTreeViz = () => {
     <div className="w-full max-w-7xl mx-auto p-6 bg-gray-900 rounded-lg border border-gray-800 overflow-hidden">
       <div className="mb-8">
         <h2 className="text-2xl font-bold text-gray-100 mb-2 break-words">
-          Example: "Which of Google's 8-ks in the past two years have had an item 5.02? Which of them were executive departures?"
+          Example: "Which of Google's 8-ks in the past two years have an item 5.02? Which of them were executive departures or role transitions?"
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 min-h-[600px] overflow-x-auto">
