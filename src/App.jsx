@@ -146,9 +146,6 @@ function App() {
       {/* Third vis: tree search */}
       <SearchTreeViz />
       <div className="my-6"></div>
-      <p className="text-gray-200 max-w-3xl mx-auto text-sm text-center italic">
-        Please note that all data contained herein is synthetic and for illustrative purposes only.
-      </p>
 
       <div className="my-6"></div>
       <p className="indent-lg text-gray-300 max-w-3xl mx-auto text-lg">
