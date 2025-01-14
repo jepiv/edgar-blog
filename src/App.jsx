@@ -8,7 +8,7 @@ function App() {
     <div className="min-h-screen bg-gray-950 py-12 px-4">
       {/* Big page title */}
       <p className="text-gray-300 max-w-3xl mx-auto text-lg italic opacity-80 justify-left">
-      December 18, 2024
+      January 15, 2025
       </p>
       <div className="my-2"></div>
       <h1 className="page-title">
